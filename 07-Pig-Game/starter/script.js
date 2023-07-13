@@ -10,6 +10,7 @@ const player1 = document.querySelector('.player--1');
 
 const buttonRoll = document.querySelector('.btn--roll');
 const buttonHold = document.querySelector('.btn--hold');
+const buttonReload = document.querySelector('.btn--new');
 
 let scorePlayer0 = 0;
 let scorePlayer1 = 0;
@@ -33,6 +34,19 @@ const handlingScores = diceValue => {
     scorePlayer1 += diceValue;
     score1.textContent = diceValue;
     accumulatedScore1.textContent = scorePlayer1;
+  }
+};
+
+const resetGame = () => {
+  scorePlayer0 = 0;
+  scorePlayer1 = 0;
+  score0.textContent = 0;
+  score1.textContent = 0;
+  accumulatedScore0.textContent = 0;
+  accumulatedScore1.textContent = 0;
+  if (player1.classList.contains('player--active')) {
+    player1.classList.remove('player--active');
+    player0.classList.add('player--active');
   }
 };
 
@@ -69,3 +83,4 @@ const rollingDice = () => {
 
 buttonRoll.addEventListener('click', rollingDice);
 buttonHold.addEventListener('click', playerSwitch);
+buttonReload.addEventListener('click', resetGame);
